@@ -18,8 +18,6 @@ Facilitator guide for the interactive deck: 8 slides, about 50 minutes, mixed au
 
 - Open the deck full screen with an internet connection. It loads its presentation and chart libraries online.
 
-<!-- -->
-
 - Move with the arrow keys or the page scroller at the bottom of the screen. Press **S** to open speaker view, which holds a short note for each slide.
 
 - Every interactive element resets when you leave a slide and come back, so you can rehearse and replay without any clean-up.
@@ -62,8 +60,6 @@ Facilitator guide for the interactive deck: 8 slides, about 50 minutes, mixed au
 
 1.  Click **Spark another** two or three times. Point out the green tag for marketing and content, the teal tag for experimentation, and the lens label on each idea.
 
-<!-- -->
-
 1.  Hover over the card to pause it. Left alone, it moves to a new idea every few seconds.
 
 2.  Mention the four path chips along the bottom. Each one jumps to its step: Find to slide 2, Score to slide 4, and Test and Scale to slide 7.
@@ -85,8 +81,6 @@ Facilitator guide for the interactive deck: 8 slides, about 50 minutes, mixed au
 **DO**
 
 1.  Allow about two minutes per lens. Read the question on the front of the card and collect ideas from the room first.
-
-<!-- -->
 
 1.  Flip the card (click it, or press Enter or Space when it has focus) and read out the two examples from the table below.
 
@@ -130,8 +124,6 @@ Facilitator guide for the interactive deck: 8 slides, about 50 minutes, mixed au
 
 1.  Click each step node, or use **Next step**, to move the glowing marker along the track. The card below changes with each step.
 
-<!-- -->
-
 1.  Walk the room through the four gate questions in the table below.
 
 2.  After step 4 the button reads **Back to Find**. Use it to make the point that discovery is a loop: the next use case comes from your matrix.
@@ -173,8 +165,6 @@ Facilitator guide for the interactive deck: 8 slides, about 50 minutes, mixed au
 
 1.  Ask the room for a score on each dimension and drag the matching slider. The radar reshapes as you drag and the score updates out of 100.
 
-<!-- -->
-
 1.  Explain the maths: the five sliders add up to a total out of 50, shown as a percentage.
 
 2.  Click the level cards to jump to a preset: **Exploring** (0–39), **Building** (40–69, preset score 54) and **Scaling** (70–100, preset score 78). The matching card highlights as the score crosses a threshold.
@@ -210,8 +200,6 @@ Facilitator guide for the interactive deck: 8 slides, about 50 minutes, mixed au
 **DO**
 
 1.  Ask for a real team size and the weekly hours on one task, then drag the sliders. The six tiles count up and both charts redraw.
-
-<!-- -->
 
 1.  Switch the currency between \$, £ and €. This changes the symbol only. It does not convert amounts.
 
@@ -256,8 +244,6 @@ Facilitator guide for the interactive deck: 8 slides, about 50 minutes, mixed au
 **DO**
 
 1.  Start with bubble 2, **Multi-channel content adaptation**, which is selected when the slide opens. Its priority score is impact times feasibility divided by ten: 7 × 8 ÷ 10 = 5.6.
-
-<!-- -->
 
 1.  Read the **Top 3 right now** list. It shows names and scores only, and it matches bubbles 2, 8 and 1. Ties go to higher data readiness, then lower risk, which is why bubble 2 sits above bubble 8 on the same 5.6.
 
@@ -316,8 +302,6 @@ Facilitator guide for the interactive deck: 8 slides, about 50 minutes, mixed au
 **DO**
 
 1.  Switch off one essential, for example **Name one owner and one baseline metric**. The score drops by about nine points to 61, the label changes to Getting there, and the message names what is missing.
-
-<!-- -->
 
 1.  Switch it back on, then add optional milestones one at a time, such as agreeing guardrails or capturing the prompts and context that work. Watch the score climb.
 
@@ -398,8 +382,6 @@ Facilitator guide for the interactive deck: 8 slides, about 50 minutes, mixed au
 **DO**
 
 1.  Invite one volunteer to name their use case. As you type, your wording appears highlighted in green inside the sentence on the right, which ends with: hold a go or no-go review on day 60.
-
-<!-- -->
 
 1.  Tick each statement the room can honestly claim. The ring fills towards 6/6 and the message counts down the commitments to go.
 
