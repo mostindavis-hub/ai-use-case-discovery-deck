@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to discover your next AI use case | Optimizely</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<style>
+:root{
+  --lf:#ABFF44;--fir:#08251A;--sage:#E4F0DA;--white:#FFFFFF;--blue:#91DBDA;--pink:#FF9BBA;
+  --display:'Outfit','Avenir Next','Segoe UI',system-ui,sans-serif;
+  --body:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
+  --mono:'Roboto Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+html,body{margin:0;padding:0;height:100%;background:#08251A;overflow:hidden}
+.reveal{font-family:var(--body);color:var(--fir);font-size:18px}
+.reveal .slides{text-align:left}
+.reveal .slides>section{padding:0!important;text-align:left}
+.reveal .progress{color:#ABFF44;height:6px;background:rgba(8,37,26,.25)}
+
+/* ---------- base slide frame ---------- */
+.slide,.slide *{box-sizing:border-box}
+.slide{width:1280px;height:720px;padding:44px 64px;display:flex;flex-direction:column;gap:16px;overflow:hidden;position:relative;font-family:var(--body);line-height:1.4}
+.slide.dark{color:var(--white)}
+.slide.light{color:var(--fir)}
+.slide h1,.slide h2,.slide h3,.slide h4,.slide p{margin:0;padding:0;text-transform:none;letter-spacing:normal;font-weight:inherit}
+.slide button{font-family:inherit;cursor:pointer}
+.slide .grid-child,.slide [class*="grid"]>*{min-width:0}
+.dark :focus-visible{outline:3px solid var(--lf)!important;outline-offset:3px}
+.light :focus-visible{outline:3px solid var(--fir)!important;outline-offset:3px}
+.dark .card :focus-visible{outline-color:var(--fir)!important}
+
+.hd{display:flex;flex-direction:column;gap:10px;width:100%}
+.eyebrow{display:inline-flex;align-self:flex-start;font:500 12.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;background:var(--lf);color:var(--fir);border:2px solid var(--fir);border-radius:999px;padding:7px 14px}
+.dark .eyebrow{border-color:var(--lf)}
+.h2{font:800 42px/1.05 var(--display);letter-spacing:-.01em}
+.lede{font:400 17px/1.45 var(--body);max-width:1152px}
+.dark .lede{color:var(--sage)}
+.mono-label{font:500 11.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.tag{display:inline-block;font:700 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:999px;border:2px solid var(--fir);background:var(--lf);color:var(--fir)}
+.tag.alt{background:var(--blue)}
+.tag.pk{background:var(--pink)}
+.tag.sg{background:var(--sage)}
+
+.card{background:var(--white);border:2px solid var(--fir);border-radius:20px;padding:18px 20px;color:var(--fir);min-width:0}
+.dark .card,.onwhite .card{background:var(--sage)}
+.callout{background:var(--fir);color:var(--white);border:2px solid var(--fir);border-radius:16px;padding:12px 18px;display:flex;gap:14px;align-items:center;min-width:0}
+.dark .callout{border-color:var(--lf)}
+.callout .tag{flex:none;border-color:var(--lf)}
+.callout p{font:500 15px/1.35 var(--body)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--lf);color:var(--fir);border:2px solid var(--fir);border-radius:999px;padding:10px 18px;font:700 15px/1 var(--display);box-shadow:0 3px 0 var(--fir);transition:transform .15s,box-shadow .15s}
+.dark .btn{box-shadow:0 3px 0 #5A9D23}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--fir)}
+
+.pills{display:flex;flex-wrap:wrap;gap:10px;width:100%}
+.pill{font:500 13px/1 var(--mono);padding:9px 14px;border-radius:999px;border:2px solid var(--fir);background:var(--lf);color:var(--fir);letter-spacing:.04em}
+.pill b{font-weight:700}
+.dark .pill{background:transparent;color:var(--white);border-color:var(--lf)}
+.dark .pill b{color:var(--lf)}
+
+.bar{height:14px;border:2px solid var(--fir);border-radius:999px;background:var(--white);overflow:hidden;width:100%}
+.bar span{display:block;height:100%;background:var(--lf);transition:width .6s cubic-bezier(.3,.8,.3,1)}
+
+.seg{display:inline-flex;border:2px solid var(--fir);border-radius:999px;overflow:hidden;background:var(--white)}
+.seg button{border:0;background:transparent;padding:6px 12px;font:600 12.5px/1 var(--body);color:var(--fir)}
+.seg button+button{border-left:2px solid var(--fir)}
+.seg button[aria-pressed="true"]{background:var(--lf)}
+
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:10px;background:var(--white);border:2px solid var(--fir);border-radius:999px;margin:0;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--lf);border:2px solid var(--fir);box-shadow:0 2px 0 var(--fir)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--lf);border:2px solid var(--fir);box-shadow:0 2px 0 var(--fir)}
+input[type=range]:focus-visible{outline-offset:6px!important}
+
+/* ---------- entrance animation ---------- */
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes zoomIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+@keyframes popin{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes swap{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.35)}}
+.reveal .slides section.present .rise{animation:rise .6s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0s)}
+.reveal .slides section.present .zoom{animation:zoomIn .5s cubic-bezier(.2,.9,.3,1.2) both;animation-delay:var(--d,0s)}
+.swap{animation:swap .45s ease both}
+
+/* ---------- slide 1 ---------- */
+.s1-grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:44px;width:100%;flex:1;min-height:0;align-items:center}
+.s1-left{display:flex;flex-direction:column;gap:22px;min-width:0}
+.title{font:800 64px/1.14 var(--display);letter-spacing:-.015em}
+.title .ln{display:block}
+.hero{display:inline-block;color:#ABFF44;-webkit-text-stroke:2px #08251A;paint-order:stroke fill;text-shadow:4px 4px 0 #BDEE44,8px 8px 0 #5A9D23,12px 12px 0 #40A147,16px 16px 0 #2D8D45,20px 20px 0 #227D47;margin:0 28px 14px 0}
+.spark{display:flex;flex-direction:column;gap:14px;padding:22px}
+.spark-tags{display:flex;flex-wrap:wrap;gap:8px}
+.spark-text{font:700 24px/1.25 var(--display);min-height:90px}
+.spark-foot{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.spark-foot span{font:500 12px var(--mono);letter-spacing:.08em}
+.steps-row{display:flex;align-items:center;gap:12px;width:100%;flex-wrap:wrap}
+.stepchip{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);border:2px solid var(--lf);border-radius:999px;padding:8px 16px;font:700 16px/1 var(--display);transition:background .2s,color .2s}
+.stepchip b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--lf);color:var(--fir);font:700 13px var(--mono)}
+.stepchip:hover{background:var(--lf);color:var(--fir)}
+.stepchip:hover b{background:var(--fir);color:var(--lf)}
+.steps-row .arrow{color:var(--lf);font:700 18px var(--mono)}
+
+/* ---------- slide 2 ---------- */
+.lens-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;width:100%}
+.flipwrap{min-width:0}
+.flip{perspective:1100px;height:304px;cursor:pointer;outline-offset:4px}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.3,.8,.3,1);transform-style:preserve-3d}
+.flip.flipped .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;top:0;left:0;right:0;bottom:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;border:2px solid var(--fir);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.face.front{background:var(--white);color:var(--fir)}
+.face.back{background:var(--fir);color:var(--white);transform:rotateY(180deg)}
+.ico{width:52px;height:52px;border-radius:50%;background:var(--lf);border:2px solid var(--fir);display:grid;place-items:center}
+.ico svg{width:28px;height:28px}
+.lens-title{font:800 28px/1.05 var(--display)}
+.lens-q{font:400 15px/1.4 var(--body)}
+.flip-hint{margin-top:auto;font:500 11.5px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.ex{display:flex;flex-direction:column;gap:6px}
+.ex p{font:400 14px/1.4 var(--body)}
+.back .bk-title{font:700 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--lf)}
+.lens-foot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:16px;width:100%;margin-top:auto}
+.meter-card{display:flex;flex-direction:column;gap:8px;padding:14px 18px}
+.meter-top{display:flex;justify-content:space-between;align-items:baseline}
+.meter-top b{font:800 22px var(--display)}
+.meter-card p{font:400 14px/1.35 var(--body)}
+
+/* ---------- slide 3 ---------- */
+#s3 .slide{gap:22px}
+.tracker{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;padding-top:2px}
+.track{position:absolute;left:12.5%;right:12.5%;top:29px;height:6px;background:rgba(255,255,255,.25);border-radius:6px}
+.track-fill{position:absolute;left:12.5%;top:29px;height:6px;width:0;background:var(--lf);border-radius:6px;transition:width .6s cubic-bezier(.3,.8,.3,1)}
+.track-fill::after{content:"";position:absolute;right:-8px;top:-5px;width:16px;height:16px;border-radius:50%;background:var(--white);border:2px solid var(--fir);animation:pulse 1.6s ease-in-out infinite}
+.node{position:relative;z-index:2;background:none;border:0;color:var(--white);display:flex;flex-direction:column;align-items:center;gap:8px;padding:0}
+.node .dot{width:60px;height:60px;border-radius:50%;border:2px solid var(--lf);background:var(--fir);color:var(--lf);font:800 24px/1 var(--display);display:grid;place-items:center;transition:background .3s,color .3s,transform .3s}
+.node.active .dot{background:var(--lf);color:var(--fir);transform:scale(1.12)}
+.node.done .dot{background:var(--lf);color:var(--fir)}
+.node .nm{font:800 22px/1 var(--display)}
+.node .tb{font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--sage)}
+.step-card{display:flex;flex-direction:column;gap:12px;width:100%}
+.sp{display:none;flex-direction:column;gap:12px}
+.sp.on{display:flex;animation:swap .45s ease both}
+.sp-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.sp-head h3{font:800 26px/1.1 var(--display)}
+.sp-cols{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:20px}
+.sp-cols p{font:400 15px/1.45 var(--body);margin-top:6px}
+.sp-cols .mono-label{color:var(--fir);opacity:.75}
+.gate{background:var(--lf);border:2px solid var(--fir);border-radius:14px;padding:10px 12px}
+.gate p{font-weight:600;margin-top:6px}
+
+/* ---------- slide 4 ---------- */
+.s4-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;flex:1;min-height:0;width:100%}
+.s4-left{display:flex;flex-direction:column;gap:14px;min-width:0}
+.levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+.level{position:relative;text-align:left;background:var(--white);border:2px solid var(--fir);border-radius:16px;padding:12px;color:var(--fir);display:flex;flex-direction:column;gap:5px;min-width:0;transition:background .25s,transform .25s,box-shadow .25s}
+.level.on{background:var(--lf);transform:translateY(-3px);box-shadow:0 4px 0 var(--fir)}
+.level h3{font:800 18px/1.1 var(--display)}
+.level p{font:400 12px/1.4 var(--body)}
+.level .rng{font:500 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.badge{position:absolute;top:-12px;right:8px;background:var(--pink);color:var(--fir);border:2px solid var(--fir);border-radius:999px;padding:3px 8px;font:700 10px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.sliders{display:flex;flex-direction:column;gap:9px}
+.srow{display:grid;grid-template-columns:minmax(0,1fr) 150px 34px;align-items:center;gap:12px}
+.srow .lbl{font:700 15px/1.15 var(--display)}
+.srow .sub{display:block;font:400 11.5px/1.3 var(--body);opacity:.8;margin-top:2px}
+.srow output{font:700 15px var(--mono);text-align:right}
+.s4-right{display:flex;flex-direction:column;gap:12px;min-width:0}
+.radar-card{padding:12px 16px}
+.chart-box{position:relative;width:100%;height:248px}
+.chart-box canvas{display:block}
+.readout{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;padding:12px 16px}
+.score-big{font:800 52px/1 var(--display)}
+.score-big small{font:500 15px var(--mono);margin-left:2px}
+.readout p{font:400 14px/1.4 var(--body);margin-top:6px}
+
+/* ---------- slide 5 ---------- */
+.calc-body{display:grid;grid-template-columns:470px minmax(0,1fr);gap:20px;flex:1;min-height:0;width:100%}
+.calc-left{display:flex;flex-direction:column;gap:12px;min-width:0}
+.inputs{display:flex;flex-direction:column;gap:11px}
+.inputs .top{display:flex;align-items:center;justify-content:space-between}
+.irow{display:grid;grid-template-columns:minmax(0,1fr) 150px 58px;align-items:center;gap:12px}
+.irow label{font:600 14px/1.2 var(--body)}
+.irow output{font:700 14px var(--mono);text-align:right}
+.calc-right{display:flex;flex-direction:column;gap:12px;min-width:0}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.kpi{background:var(--sage);border:2px solid var(--fir);border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;color:var(--fir);min-width:0}
+.kpi .k{font:500 10.5px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.kpi .v{font:800 30px/1 var(--display)}
+.kpi.hot{background:var(--lf)}
+.charts{display:grid;grid-template-columns:230px minmax(0,1fr);gap:12px;flex:1;min-height:0}
+.ch-card{padding:12px 14px;display:flex;flex-direction:column;gap:6px;min-height:0}
+.ch-card .chart-box{height:auto;flex:1;min-height:0}
+.donut-wrap{position:relative}
+.donut-mid{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;pointer-events:none}
+.donut-mid b{display:block;font:800 34px/1 var(--display)}
+.donut-mid span{font:500 10px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.note{font:400 12px/1.35 var(--body);opacity:.85}
+
+/* ---------- slide 6 ---------- */
+.s6 .h2{font-size:38px}
+.s6 .hd{gap:8px}
+.mx-body{display:grid;grid-template-columns:660px minmax(0,1fr);gap:18px;flex:1;min-height:0;width:100%}
+.mx-card{display:flex;flex-direction:column;gap:6px;padding:10px 14px;min-height:0}
+.mx-ctrl{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:nowrap}
+.mx-ctrl .grp{display:flex;align-items:center;gap:8px}
+.mx-ctrl .mono-label{font-size:10.5px}
+.mx-svg{width:100%;flex:1;min-height:0;display:block}
+.bubble{cursor:pointer;transition:transform .55s cubic-bezier(.3,.8,.3,1),opacity .3s}
+.bubble.dim{opacity:.22}
+.bubble .main{transition:r .55s cubic-bezier(.3,.8,.3,1);stroke:#08251A;stroke-width:2.5}
+.bubble[data-team="Marketing"] .main{fill:#ABFF44}
+.bubble[data-team="Experimentation"] .main{fill:#91DBDA}
+.bubble .ring{display:none;fill:none;stroke:#08251A;stroke-width:2.5;stroke-dasharray:5 4}
+.bubble.sel .ring,.bubble:focus-visible .ring{display:block}
+.bubble:focus{outline:none}
+.bubble .pop{transform-origin:0 0}
+.reveal .slides section.present .bubble .pop{animation:popin .55s cubic-bezier(.2,1.4,.4,1) both;animation-delay:calc(var(--n)*70ms + .2s)}
+.bubble .num{font:800 15px var(--display);fill:#08251A;pointer-events:none}
+.mx-right{display:flex;flex-direction:column;gap:12px;min-width:0}
+.detail{display:flex;flex-direction:column;gap:8px;padding:12px 16px}
+.d-head{display:flex;gap:12px;align-items:center}
+.d-num{flex:none;width:40px;height:40px;border-radius:50%;background:var(--lf);border:2px solid var(--fir);display:grid;place-items:center;font:800 18px var(--display)}
+.d-head h3{font:800 19px/1.1 var(--display)}
+.d-tags{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.detail>p{font:400 13.5px/1.4 var(--body)}
+.msl{display:flex;flex-direction:column;gap:5px}
+.mrow{display:grid;grid-template-columns:122px minmax(0,1fr) 30px;align-items:center;gap:10px}
+.mrow label{font:600 13px/1 var(--body)}
+.mrow input[type=range]{height:8px}
+.mrow input[type=range]::-webkit-slider-thumb{width:18px;height:18px}
+.mrow input[type=range]::-moz-range-thumb{width:14px;height:14px}
+.mrow output{font:700 13px var(--mono);text-align:right}
+.d-score{display:flex;align-items:baseline;gap:8px;font:500 13px var(--body)}
+.d-score b{font:800 26px/1 var(--display)}
+.d-score .hint{margin-left:auto;font:500 10.5px var(--mono);opacity:.7}
+.top3{padding:10px 16px;display:flex;flex-direction:column;gap:5px}
+.rk{display:grid;grid-template-columns:minmax(0,1fr) 40px;align-items:center;gap:10px;background:var(--white);border:2px solid var(--fir);border-radius:12px;padding:5px 10px;text-align:left;color:var(--fir);font:600 13px/1.2 var(--body)}
+.rk .s{font:700 13px var(--mono);text-align:right}
+.rk.cur{background:var(--lf)}
+
+/* ---------- slide 7 ---------- */
+.road{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;width:100%}
+.phase{display:flex;flex-direction:column;gap:7px;min-width:0}
+.ph-head{background:var(--lf);color:var(--fir);border-radius:16px;padding:8px 14px;display:flex;flex-direction:column;gap:5px}
+.ph-head .mono-label{opacity:.8}
+.ph-head h3{font:800 22px/1 var(--display)}
+.ms{display:grid;grid-template-columns:22px minmax(0,1fr) auto;align-items:center;gap:10px;text-align:left;background:transparent;color:var(--white);border:2px dashed var(--lf);border-radius:14px;padding:7px 12px;font:500 14px/1.25 var(--body);min-height:42px;transition:background .2s,color .2s,border-style .2s}
+.ms .bx{width:22px;height:22px;border-radius:7px;border:2px solid var(--lf);display:grid;place-items:center;color:transparent;font:800 14px/1 var(--display)}
+.ms .es{font:700 9.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;border:1.5px solid currentColor;border-radius:999px;padding:3px 6px;opacity:.9}
+.ms[aria-pressed="true"]{background:var(--lf);color:var(--fir);border-style:solid;border-color:var(--lf)}
+.ms[aria-pressed="true"] .bx{border-color:var(--fir);background:var(--fir);color:var(--lf)}
+.plan-row{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;width:100%;margin-top:auto}
+.strength{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:center;padding:14px 18px}
+.st-num{display:flex;align-items:baseline;gap:4px;margin:6px 0}
+.st-num b{font:800 46px/1 var(--display)}
+.st-num span{font:500 14px var(--mono)}
+.st-mid{display:flex;flex-direction:column;gap:7px;min-width:0}
+.st-mid p{font:500 14px/1.35 var(--body)}
+
+/* ---------- slide 8 ---------- */
+.s8-body{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:30px;flex:1;min-height:0;width:100%}
+.s8-left{display:flex;flex-direction:column;gap:14px;min-width:0}
+.fld{display:flex;flex-direction:column;gap:6px}
+.fld label{font:500 11.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.fld input{width:100%;font:600 18px/1.2 var(--body);padding:11px 16px;border:2px solid var(--fir);border-radius:14px;background:var(--white);color:var(--fir)}
+.checks{display:flex;flex-direction:column;gap:9px}
+.check{display:grid;grid-template-columns:26px minmax(0,1fr);gap:12px;align-items:center;background:var(--sage);border:2px solid var(--fir);border-radius:14px;padding:9px 14px;font:500 15px/1.3 var(--body);cursor:pointer;transition:background .2s}
+.check input{-webkit-appearance:none;appearance:none;margin:0;width:26px;height:26px;border:2px solid var(--fir);border-radius:8px;background:var(--white);display:grid;place-items:center;cursor:pointer}
+.check input:checked{background:var(--fir)}
+.check input:checked::after{content:"\2713";color:var(--lf);font:800 16px/1 var(--display)}
+.check.on{background:var(--lf)}
+.s8-right{display:flex;flex-direction:column;gap:14px;min-width:0}
+.ring-card{display:grid;grid-template-columns:200px minmax(0,1fr);gap:22px;align-items:center;padding:20px 22px;flex:1;min-height:0}
+.ring-wrap{position:relative;width:200px;height:200px}
+.ring-wrap canvas{display:block}
+.ring-mid{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;pointer-events:none}
+.ring-mid b{font:800 46px/1 var(--display)}
+#s8 .h2{font-size:38px}
+.ring-mid span{display:block;font:500 10px var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+.stmt{font:700 24px/1.3 var(--display)}
+.stmt em{font-style:normal;background:var(--lf);padding:0 6px;border-radius:6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.cm{font:500 14px/1.35 var(--body);margin-top:8px}
+.recap{display:flex;flex-direction:column;gap:10px}
+#confetti{position:absolute;left:0;top:0;width:1280px;height:720px;pointer-events:none;z-index:20}
+
+/* ---------- accessibility helpers ---------- */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ch-card .chart-box{overflow:hidden}
+.ch-card .chart-box canvas{position:absolute;left:0;top:0}
+.tracker:hover .track-fill::after,.tracker:focus-within .track-fill::after{animation-play-state:paused}
+
+/* ---------- custom page scroller ---------- */
+.scroller{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:100;display:flex;align-items:center;gap:10px;background:var(--white);border:2px solid var(--fir);border-radius:999px;padding:4px 10px;box-shadow:0 3px 0 var(--fir)}
+.scroller button{font-family:inherit;cursor:pointer}
+.nav-arrow{width:28px;height:28px;border-radius:50%;border:2px solid var(--fir);background:var(--lf);color:var(--fir);display:grid;place-items:center;padding:0}
+.nav-arrow:hover{background:var(--fir);color:var(--lf)}
+.nav-arrow svg{width:14px;height:14px}
+.dots{display:flex;gap:8px;align-items:center}
+.dotb{position:relative;width:14px;height:14px;border-radius:50%;border:2px solid var(--fir);background:var(--white);padding:0;transition:background .2s,transform .2s}
+.dotb::after{content:"";position:absolute;left:-6px;right:-6px;top:-8px;bottom:-8px}
+.dotb[aria-current="true"]{background:var(--lf);transform:scale(1.4)}
+.count{font:700 13px/1 var(--mono);color:var(--fir);min-width:44px;text-align:center}
+.scroller :focus-visible{outline:3px solid var(--fir);outline-offset:2px}
+
+@media (prefers-reduced-motion:reduce){
+  .reveal .slides section.present .rise,.reveal .slides section.present .zoom,.reveal .slides section.present .bubble .pop,.swap,.sp.on,.track-fill::after{animation:none!important}
+  *{transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- ============ 1. TITLE (dark) ============ -->
+<section id="s1" data-init="s1" data-background-color="#08251A">
+  <div class="slide dark">
+    <div class="rise" style="--d:.05s"><span class="eyebrow">AI use case discovery · workshop deck</span></div>
+    <div class="s1-grid">
+      <div class="s1-left">
+        <h1 class="title rise" style="--d:.12s"><span class="ln">How to discover your</span><span class="ln"><span class="hero">next</span>AI use case</span></h1>
+        <p class="lede rise" style="--d:.22s">Stop collecting ideas. Start ranking them. A four-step path from a long list of what-ifs to one use case you can prove in 90 days, with examples from marketing, content and experimentation teams.</p>
+        <div class="pills rise" style="--d:.3s">
+          <span class="pill"><b>4</b> discovery lenses</span>
+          <span class="pill"><b>5</b> readiness dimensions</span>
+          <span class="pill"><b>1</b> priority matrix</span>
+          <span class="pill"><b>90</b>-day plan</span>
+        </div>
+      </div>
+      <div class="card spark zoom" id="sparkCard" style="--d:.35s">
+        <span class="mono-label">Spark an idea</span>
+        <div class="spark-tags"><span class="tag" id="ideaTeam">Marketing and content</span><span class="tag sg" id="ideaLens">Lens: Repetition</span></div>
+        <p class="spark-text" id="ideaText" aria-live="polite">Adapt one approved campaign message into every channel format.</p>
+        <div class="spark-foot"><span id="ideaCount">Idea 1 of 8</span><button type="button" class="btn" id="sparkBtn" aria-label="Show another example use case">Spark another</button></div>
+      </div>
+    </div>
+    <div class="steps-row rise" style="--d:.45s">
+      <span class="mono-label" style="color:#ABFF44">The path</span>
+      <button type="button" class="stepchip" data-go="1" aria-label="Go to step 1, Find"><b>1</b> Find</button><span class="arrow" aria-hidden="true">→</span>
+      <button type="button" class="stepchip" data-go="3" aria-label="Go to step 2, Score"><b>2</b> Score</button><span class="arrow" aria-hidden="true">→</span>
+      <button type="button" class="stepchip" data-go="6" aria-label="Go to step 3, Test"><b>3</b> Test</button><span class="arrow" aria-hidden="true">→</span>
+      <button type="button" class="stepchip" data-go="6" aria-label="Go to step 4, Scale"><b>4</b> Scale</button>
+    </div>
+  </div>
+  <aside class="notes">Open with the promise: this is a discovery method, not a technology tour. Use the Spark an idea card to show how concrete a good use case sounds. The four step chips preview the path: find, score, test, scale.</aside>
+</section>
+
+<!-- ============ 2. LENSES (sage) ============ -->
+<section id="s2" data-init="s2" data-background-color="#E4F0DA">
+  <div class="slide light">
+    <div class="hd rise">
+      <span class="eyebrow">Step 1 · Find</span>
+      <h2 class="h2">Start with the work, not the technology</h2>
+      <p class="lede">Four lenses surface use cases faster than a blank whiteboard. Flip each card for examples from marketing and experimentation teams.</p>
+    </div>
+    <div class="lens-grid">
+      <div class="flipwrap rise" style="--d:.1s"><div class="flip" role="button" tabindex="0" aria-pressed="false" data-lens="1" aria-label="Lens 1, Friction. Press to flip and see examples.">
+        <div class="flip-in">
+          <div class="face front"><span class="mono-label">Lens 1</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#08251A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l5-8 4 6 4-10 5 12"/></svg></div><h3 class="lens-title">Friction</h3><p class="lens-q">Where does work wait, bounce back or get escalated?</p><span class="flip-hint">↻ Flip for examples</span></div>
+          <div class="face back"><span class="bk-title">Friction in practice</span>
+            <div class="ex"><span class="tag">Marketing and content</span><p>Campaign briefs loop through four reviewers before a first draft exists.</p></div>
+            <div class="ex"><span class="tag alt">Experimentation</span><p>Test ideas sit in a backlog because nobody has time to scope them.</p></div></div>
+        </div></div></div>
+      <div class="flipwrap rise" style="--d:.18s"><div class="flip" role="button" tabindex="0" aria-pressed="false" data-lens="2" aria-label="Lens 2, Repetition. Press to flip and see examples.">
+        <div class="flip-in">
+          <div class="face front"><span class="mono-label">Lens 2</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#08251A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg></div><h3 class="lens-title">Repetition</h3><p class="lens-q">What do you rebuild the same way every week?</p><span class="flip-hint">↻ Flip for examples</span></div>
+          <div class="face back"><span class="bk-title">Repetition in practice</span>
+            <div class="ex"><span class="tag">Marketing and content</span><p>Reformatting one approved message for email, social, web and paid.</p></div>
+            <div class="ex"><span class="tag alt">Experimentation</span><p>Writing hypotheses, variation copy and results summaries from scratch.</p></div></div>
+        </div></div></div>
+      <div class="flipwrap rise" style="--d:.26s"><div class="flip" role="button" tabindex="0" aria-pressed="false" data-lens="3" aria-label="Lens 3, Data. Press to flip and see examples.">
+        <div class="flip-in">
+          <div class="face front"><span class="mono-label">Lens 3</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#08251A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><h3 class="lens-title">Data</h3><p class="lens-q">What are you sitting on that nobody has mined?</p><span class="flip-hint">↻ Flip for examples</span></div>
+          <div class="face back"><span class="bk-title">Data in practice</span>
+            <div class="ex"><span class="tag">Marketing and content</span><p>Years of campaign and engagement data that never shaped the next brief.</p></div>
+            <div class="ex"><span class="tag alt">Experimentation</span><p>Hundreds of past results with learnings no one can search.</p></div></div>
+        </div></div></div>
+      <div class="flipwrap rise" style="--d:.34s"><div class="flip" role="button" tabindex="0" aria-pressed="false" data-lens="4" aria-label="Lens 4, Scale. Press to flip and see examples.">
+        <div class="flip-in">
+          <div class="face front"><span class="mono-label">Lens 4</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#08251A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20v-6M12 20V8M19 20V3"/></svg></div><h3 class="lens-title">Scale</h3><p class="lens-q">Where would ten times the volume change the outcome?</p><span class="flip-hint">↻ Flip for examples</span></div>
+          <div class="face back"><span class="bk-title">Scale in practice</span>
+            <div class="ex"><span class="tag">Marketing and content</span><p>Personalised content for every audience segment, not just the top three.</p></div>
+            <div class="ex"><span class="tag alt">Experimentation</span><p>More tests each quarter with the same team and the same standards.</p></div></div>
+        </div></div></div>
+    </div>
+    <div class="lens-foot rise" style="--d:.45s">
+      <div class="card meter-card">
+        <div class="meter-top"><span class="mono-label">Lenses explored</span><b id="lensCount">0 / 4</b></div>
+        <div class="bar" role="progressbar" aria-label="Lenses explored" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0" id="lensProg"><span id="lensBar" style="width:0%"></span></div>
+        <p id="lensMsg" aria-live="polite">Flip each card to see examples from marketing and experimentation.</p>
+      </div>
+      <div class="callout"><span class="tag">Workshop question</span><p>Which lens surfaced the most ideas for your team, and which one did you skip?</p></div>
+    </div>
+  </div>
+  <aside class="notes">Give the room two minutes per lens. Ask them to shout out ideas before flipping the card, then compare with the examples. Capture every idea on the long list, however rough.</aside>
+</section>
+
+<!-- ============ 3. PROCESS (dark) ============ -->
+<section id="s3" data-init="s3" data-background-color="#08251A">
+  <div class="slide dark">
+    <div class="hd rise">
+      <span class="eyebrow">The discovery loop</span>
+      <h2 class="h2">Four steps from long list to live use case</h2>
+      <p class="lede">Each step has a time-box, an output and a gate question. If you cannot answer the gate question, stay in the step.</p>
+    </div>
+    <div class="tracker rise" style="--d:.1s" role="group" aria-label="Discovery steps">
+      <div class="track" aria-hidden="true"></div>
+      <div class="track-fill" id="trackFill" aria-hidden="true"></div>
+      <button type="button" class="node active" data-step="1" aria-pressed="true" aria-label="Step 1, Find, days 1 to 14"><span class="dot">1</span><span class="nm">Find</span><span class="tb">Days 1-14</span></button>
+      <button type="button" class="node" data-step="2" aria-pressed="false" aria-label="Step 2, Score, days 15 to 30"><span class="dot">2</span><span class="nm">Score</span><span class="tb">Days 15-30</span></button>
+      <button type="button" class="node" data-step="3" aria-pressed="false" aria-label="Step 3, Test, days 31 to 60"><span class="dot">3</span><span class="nm">Test</span><span class="tb">Days 31-60</span></button>
+      <button type="button" class="node" data-step="4" aria-pressed="false" aria-label="Step 4, Scale, days 61 to 90"><span class="dot">4</span><span class="nm">Scale</span><span class="tb">Days 61-90</span></button>
+    </div>
+    <div class="card step-card rise" style="--d:.2s" aria-live="polite">
+      <div class="sp on" data-step="1">
+        <div class="sp-head"><h3>Find: build a long list</h3><span class="tag">Days 1-14</span></div>
+        <div class="sp-cols">
+          <div><span class="mono-label">What you do</span><p>Run the four lenses with five to eight people from marketing, content and experimentation. Write each idea as: who, which job, what outcome.</p></div>
+          <div><span class="mono-label">What you produce</span><p>A long list of 15 to 25 candidate use cases, each described in one sentence.</p></div>
+          <div class="gate"><span class="mono-label">Gate question</span><p>Can we describe the job and the outcome in one sentence?</p></div>
+        </div>
+      </div>
+      <div class="sp" data-step="2">
+        <div class="sp-head"><h3>Score: rank what you found</h3><span class="tag">Days 15-30</span></div>
+        <div class="sp-cols">
+          <div><span class="mono-label">What you do</span><p>Rate every idea on impact, feasibility, data readiness and risk. Plot them on the matrix and challenge the outliers as a group.</p></div>
+          <div><span class="mono-label">What you produce</span><p>A ranked shortlist of three, with one clear winner.</p></div>
+          <div class="gate"><span class="mono-label">Gate question</span><p>Does the winner sit in the Start here quadrant?</p></div>
+        </div>
+      </div>
+      <div class="sp" data-step="3">
+        <div class="sp-head"><h3>Test: prove it small</h3><span class="tag">Days 31-60</span></div>
+        <div class="sp-cols">
+          <div><span class="mono-label">What you do</span><p>Pilot the top use case with three to five users. Agree the baseline first, then compare results every week.</p></div>
+          <div><span class="mono-label">What you produce</span><p>A measured pilot: time saved, quality and cost per outcome against the baseline.</p></div>
+          <div class="gate"><span class="mono-label">Gate question</span><p>Did it beat the baseline by the margin we agreed up front?</p></div>
+        </div>
+      </div>
+      <div class="sp" data-step="4">
+        <div class="sp-head"><h3>Scale: make it routine</h3><span class="tag">Days 61-90</span></div>
+        <div class="sp-cols">
+          <div><span class="mono-label">What you do</span><p>Roll out to the wider team, set review rules, train champions and track return on token every month.</p></div>
+          <div><span class="mono-label">What you produce</span><p>A playbook, a prompt library and the next use case drawn from your matrix.</p></div>
+          <div class="gate"><span class="mono-label">Gate question</span><p>Can someone else run it without you in the room?</p></div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <span class="note" id="stepNote">Step 1 of 4. Select a step above or move on.</span>
+        <button type="button" class="btn" id="stepNext">Next step →</button>
+      </div>
+    </div>
+    <div class="callout rise" style="--d:.3s;margin-top:auto"><span class="tag">Workshop question</span><p>Which step would stall first in your organisation, and who could unblock it?</p></div>
+  </div>
+  <aside class="notes">Walk the four nodes left to right. The glowing marker shows progress. Stress the gate questions: they stop teams scaling something they have not proven.</aside>
+</section>
+
+<!-- ============ 4. READINESS (white) ============ -->
+<section id="s4" data-init="s4" data-background-color="#FFFFFF">
+  <div class="slide light onwhite">
+    <div class="hd rise">
+      <span class="eyebrow">Step 2 · Score · Readiness</span>
+      <h2 class="h2">Check your readiness before you pick</h2>
+      <p class="lede">Slide each dimension from 0 to 10. The radar shows where a first use case is safe to start and where it needs support.</p>
+    </div>
+    <div class="s4-body">
+      <div class="s4-left">
+        <div class="levels rise" style="--d:.1s" role="group" aria-label="Readiness levels">
+          <button type="button" class="level on" data-level="exploring" aria-pressed="true"><span class="badge">Most orgs. here</span><h3>Exploring</h3><span class="rng">Score 0-39</span><p>Pilots live in pockets. Data is scattered and rules are informal. Start assistive and low risk.</p></button>
+          <button type="button" class="level" data-level="building" aria-pressed="false"><h3>Building</h3><span class="rng">Score 40-69</span><p>A few repeatable workflows exist. Take one feasible use case with clear guardrails.</p></button>
+          <button type="button" class="level" data-level="scaling" aria-pressed="false"><h3>Scaling</h3><span class="rng">Score 70-100</span><p>Shared platforms, owners and review rules. You can stretch into bigger bets.</p></button>
+        </div>
+        <div class="sliders rise" style="--d:.2s">
+          <div class="srow"><div><span class="lbl">Data access</span><span class="sub">Can the team reach the data this use case needs?</span></div><input type="range" min="0" max="10" step="1" value="3" id="r_0" aria-label="Data access, 0 to 10"><output for="r_0" id="o_0">3</output></div>
+          <div class="srow"><div><span class="lbl">Process clarity</span><span class="sub">Is the job documented well enough to hand over?</span></div><input type="range" min="0" max="10" step="1" value="3" id="r_1" aria-label="Process clarity, 0 to 10"><output for="r_1" id="o_1">3</output></div>
+          <div class="srow"><div><span class="lbl">Team skills</span><span class="sub">Do people know how to prompt, review and improve?</span></div><input type="range" min="0" max="10" step="1" value="3" id="r_2" aria-label="Team skills, 0 to 10"><output for="r_2" id="o_2">3</output></div>
+          <div class="srow"><div><span class="lbl">Governance and risk</span><span class="sub">Are review rules, privacy and brand guardrails agreed?</span></div><input type="range" min="0" max="10" step="1" value="2" id="r_3" aria-label="Governance and risk, 0 to 10"><output for="r_3" id="o_3">2</output></div>
+          <div class="srow"><div><span class="lbl">Sponsorship</span><span class="sub">Does a leader own the outcome and the budget?</span></div><input type="range" min="0" max="10" step="1" value="4" id="r_4" aria-label="Sponsorship, 0 to 10"><output for="r_4" id="o_4">4</output></div>
+        </div>
+      </div>
+      <div class="s4-right">
+        <div class="card radar-card zoom" style="--d:.2s"><div class="chart-box"><canvas id="radarCanvas" role="img" aria-label="Radar chart of readiness. Data access 3, process clarity 3, team skills 3, governance 2, sponsorship 4."></canvas></div></div>
+        <div class="card readout rise" style="--d:.3s">
+          <div class="score-big"><span id="scoreNum">30</span><small>/100</small></div>
+          <div><span class="tag" id="levelTag">Exploring</span><p id="levelMsg">Aim for the Start here quadrant: assistive, low-risk work on data you already hold.</p></div>
+        </div>
+        <div class="callout rise" style="--d:.4s"><span class="tag">Workshop question</span><p>Which dimension would hold back your first use case, and who owns fixing it?</p></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Start on the Exploring preset, then let the room argue each slider. The level cards update live as the score moves. The point is not the number; it is naming the weakest dimension.</aside>
+</section>
+
+<!-- ============ 5. VALUE CALCULATOR (dark) ============ -->
+<section id="s5" data-init="s5" data-background-color="#08251A">
+  <div class="slide dark">
+    <div class="hd rise">
+      <span class="eyebrow">Step 2 · Score · Payoff</span>
+      <h2 class="h2">Estimate the payoff before you rank</h2>
+      <p class="lede">Return on token is the value of the time you free, divided by what you spend on AI. Drag the inputs to see which tasks are worth it.</p>
+    </div>
+    <div class="calc-body">
+      <div class="calc-left">
+        <div class="card inputs rise" style="--d:.1s">
+          <div class="top"><span class="mono-label">Your task, your numbers</span>
+            <div class="seg" role="group" aria-label="Currency"><button type="button" data-cur="$" aria-pressed="true">$</button><button type="button" data-cur="£" aria-pressed="false">£</button><button type="button" data-cur="€" aria-pressed="false">€</button></div></div>
+          <div class="irow"><label for="c_team">Team size</label><input type="range" id="c_team" min="1" max="100" step="1" value="12"><output id="oc_team">12</output></div>
+          <div class="irow"><label for="c_hrs">Hours per person per week on the task</label><input type="range" id="c_hrs" min="1" max="20" step="0.5" value="4"><output id="oc_hrs">4 h</output></div>
+          <div class="irow"><label for="c_share">Share of that time AI can take over</label><input type="range" id="c_share" min="5" max="90" step="5" value="40"><output id="oc_share">40%</output></div>
+          <div class="irow"><label for="c_rate">Loaded cost per hour</label><input type="range" id="c_rate" min="10" max="200" step="5" value="55"><output id="oc_rate">$55</output></div>
+          <div class="irow"><label for="c_spend">AI spend per person per month</label><input type="range" id="c_spend" min="5" max="200" step="5" value="40"><output id="oc_spend">$40</output></div>
+          <div class="irow"><label for="c_ramp">Months to full adoption</label><input type="range" id="c_ramp" min="1" max="6" step="1" value="3"><output id="oc_ramp">3 mo</output></div>
+        </div>
+        <div class="callout rise" style="--d:.3s;margin-top:auto"><span class="tag">Workshop question</span><p>Which task would you be happiest to hand over, and what would you do with the hours?</p></div>
+      </div>
+      <div class="calc-right">
+        <div class="kpis rise" style="--d:.15s">
+          <div class="kpi"><span class="k">Hours freed per month</span><span class="v" id="kHours">83 h</span></div>
+          <div class="kpi"><span class="k">Value per month</span><span class="v" id="kValue">$4,572</span></div>
+          <div class="kpi"><span class="k">AI spend per month</span><span class="v" id="kSpend">$480</span></div>
+          <div class="kpi hot"><span class="k">Return on token</span><span class="v" id="kRoi">9.5x</span></div>
+          <div class="kpi"><span class="k">Cost per hour saved</span><span class="v" id="kPer">$5.77</span></div>
+          <div class="kpi"><span class="k">12-month net value</span><span class="v" id="kNet">$44.5k</span></div>
+        </div>
+        <div class="charts rise" style="--d:.25s">
+          <div class="card ch-card"><span class="mono-label">Value kept after spend</span>
+            <div class="chart-box donut-wrap"><canvas id="donutCanvas" role="img" aria-label="Doughnut chart of the share of value kept after AI spend"></canvas><div class="donut-mid"><b id="donutVal">90%</b><span>kept</span></div></div></div>
+          <div class="card ch-card"><span class="mono-label">Cumulative net value, 12 months</span>
+            <div class="chart-box"><canvas id="lineCanvas" role="img" aria-label="Line chart of cumulative net value over twelve months"></canvas></div>
+            <span class="note">Spend starts in month 1. Value ramps with adoption.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Use real numbers from the room. Return on token is the story: choose the most economical model for the task, then check that the value of time freed clearly beats the spend. Change the ramp slider to show why adoption matters.</aside>
+</section>
+
+<!-- ============ 6. MATRIX (sage) ============ -->
+<section id="s6" data-init="s6" data-background-color="#E4F0DA">
+  <div class="slide light s6">
+    <div class="hd rise">
+      <span class="eyebrow">Step 2 · Score · Prioritise</span>
+      <h2 class="h2">Tackle the top right first</h2>
+    </div>
+    <div class="mx-body">
+      <div class="card mx-card zoom" style="--d:.1s">
+        <div class="mx-ctrl">
+          <div class="grp"><span class="mono-label">Show</span>
+            <div class="seg" role="group" aria-label="Filter by team"><button type="button" data-team="All" aria-pressed="true">All</button><button type="button" data-team="Marketing" aria-pressed="false">Marketing</button><button type="button" data-team="Experimentation" aria-pressed="false">Experimentation</button></div></div>
+          <div class="grp"><span class="mono-label">Bubble size</span>
+            <div class="seg" role="group" aria-label="What bubble size shows"><button type="button" data-size="d" aria-pressed="true">Readiness</button><button type="button" data-size="r" aria-pressed="false">Risk</button></div></div>
+        </div>
+        <svg class="mx-svg" viewBox="0 0 680 472" role="group" aria-label="Priority matrix. Impact on the vertical axis, feasibility on the horizontal axis. Eleven example use cases.">
+          <defs><clipPath id="plotClip"><rect x="70" y="30" width="560" height="400" rx="14"/></clipPath></defs>
+          <g id="mx-background" clip-path="url(#plotClip)">
+            <rect x="70" y="30" width="280" height="210" fill="#E4F0DA"/>
+            <rect x="350" y="30" width="280" height="210" fill="#ABFF44" fill-opacity="0.38"/>
+            <rect x="70" y="240" width="280" height="190" fill="#FF9BBA" fill-opacity="0.22"/>
+            <rect x="350" y="240" width="280" height="190" fill="#E4F0DA"/>
+          </g>
+          <g id="mx-effects">
+            <line x1="350" y1="30" x2="350" y2="430" stroke="#08251A" stroke-opacity="0.5" stroke-width="1.5" stroke-dasharray="6 5"/>
+            <line x1="70" y1="240" x2="630" y2="240" stroke="#08251A" stroke-opacity="0.5" stroke-width="1.5" stroke-dasharray="6 5"/>
+            <rect x="70" y="30" width="560" height="400" rx="14" fill="none" stroke="#08251A" stroke-width="2.5"/>
+          </g>
+          <g id="mx-axes" font-family="Roboto Mono, monospace" font-size="11" fill="#08251A">
+            <text x="70" y="448" text-anchor="start">Low</text>
+            <text x="630" y="448" text-anchor="end">High</text>
+            <text x="350" y="464" text-anchor="middle" font-weight="700" letter-spacing="1.2">FEASIBILITY: data, skills and guardrails ready</text>
+            <text x="62" y="42" text-anchor="end">High</text>
+            <text x="62" y="430" text-anchor="end">Low</text>
+            <text x="22" y="230" text-anchor="middle" font-weight="700" letter-spacing="1.2" transform="rotate(-90 22 230)">IMPACT: value if it works</text>
+          </g>
+          <g id="mx-nodes">
+            <g class="bubble" data-id="1" data-team="Marketing" data-name="Campaign brief drafting" data-desc="Turn a one-line request into a structured first draft of the brief." data-i="6" data-f="9" data-d="8" data-r="2" role="button" tabindex="0" aria-label="Use case 1: Campaign brief drafting. Impact 6, feasibility 9, data readiness 8, risk 2. Start here." style="--n:1;transform:translate(574px,202px)"><g class="pop"><circle class="ring" r="34.6"/><circle class="main" r="27.6"/><text class="num" text-anchor="middle" dy="0.35em">1</text></g></g>
+            <g class="bubble sel" data-id="2" data-team="Marketing" data-name="Multi-channel content adaptation" data-desc="Adapt one approved message into email, social, web and ad variants." data-i="7" data-f="8" data-d="8" data-r="3" role="button" tabindex="0" aria-label="Use case 2: Multi-channel content adaptation. Impact 7, feasibility 8, data readiness 8, risk 3. Start here." style="--n:2;transform:translate(518px,164px)"><g class="pop"><circle class="ring" r="34.6"/><circle class="main" r="27.6"/><text class="num" text-anchor="middle" dy="0.35em">2</text></g></g>
+            <g class="bubble" data-id="3" data-team="Marketing" data-name="Personalised content at scale" data-desc="Generate and govern audience-specific variants for every segment." data-i="9" data-f="4" data-d="6" data-r="6" role="button" tabindex="0" aria-label="Use case 3: Personalised content at scale. Impact 9, feasibility 4, data readiness 6, risk 6. Big bet." style="--n:3;transform:translate(294px,88px)"><g class="pop"><circle class="ring" r="30.2"/><circle class="main" r="23.2"/><text class="num" text-anchor="middle" dy="0.35em">3</text></g></g>
+            <g class="bubble" data-id="4" data-team="Marketing" data-name="Audience and segment discovery" data-desc="Surface hidden audience segments from behavioural and campaign data." data-i="7" data-f="3" data-d="4" data-r="5" role="button" tabindex="0" aria-label="Use case 4: Audience and segment discovery. Impact 7, feasibility 3, data readiness 4, risk 5. Big bet." style="--n:4;transform:translate(238px,164px)"><g class="pop"><circle class="ring" r="25.8"/><circle class="main" r="18.8"/><text class="num" text-anchor="middle" dy="0.35em">4</text></g></g>
+            <g class="bubble" data-id="5" data-team="Marketing" data-name="Brand-voice review assist" data-desc="Pre-check drafts against tone, claims and style rules before human review." data-i="4" data-f="8" data-d="7" data-r="3" role="button" tabindex="0" aria-label="Use case 5: Brand-voice review assist. Impact 4, feasibility 8, data readiness 7, risk 3. Fill-in." style="--n:5;transform:translate(518px,278px)"><g class="pop"><circle class="ring" r="32.4"/><circle class="main" r="25.4"/><text class="num" text-anchor="middle" dy="0.35em">5</text></g></g>
+            <g class="bubble" data-id="6" data-team="Experimentation" data-name="Experiment idea generation from past results" data-desc="Mine past results and customer signals for new test hypotheses." data-i="7" data-f="6" data-d="7" data-r="2" role="button" tabindex="0" aria-label="Use case 6: Experiment idea generation from past results. Impact 7, feasibility 6, data readiness 7, risk 2. Start here." style="--n:6;transform:translate(406px,164px)"><g class="pop"><circle class="ring" r="32.4"/><circle class="main" r="25.4"/><text class="num" text-anchor="middle" dy="0.35em">6</text></g></g>
+            <g class="bubble" data-id="7" data-team="Experimentation" data-name="Hypothesis and variation copy drafting" data-desc="Draft hypotheses and variation copy for the team to refine." data-i="3" data-f="9" data-d="9" data-r="1" role="button" tabindex="0" aria-label="Use case 7: Hypothesis and variation copy drafting. Impact 3, feasibility 9, data readiness 9, risk 1. Fill-in." style="--n:7;transform:translate(574px,316px)"><g class="pop"><circle class="ring" r="36.8"/><circle class="main" r="29.8"/><text class="num" text-anchor="middle" dy="0.35em">7</text></g></g>
+            <g class="bubble" data-id="8" data-team="Experimentation" data-name="Results summaries and next steps" data-desc="Summarise results in plain language and propose follow-up tests." data-i="8" data-f="7" data-d="7" data-r="3" role="button" tabindex="0" aria-label="Use case 8: Results summaries and next steps. Impact 8, feasibility 7, data readiness 7, risk 3. Start here." style="--n:8;transform:translate(462px,126px)"><g class="pop"><circle class="ring" r="32.4"/><circle class="main" r="25.4"/><text class="num" text-anchor="middle" dy="0.35em">8</text></g></g>
+            <g class="bubble" data-id="9" data-team="Experimentation" data-name="Experiment catalogue tagging" data-desc="Tag and catalogue past experiments so learnings are searchable." data-i="4" data-f="6" data-d="6" data-r="1" role="button" tabindex="0" aria-label="Use case 9: Experiment catalogue tagging. Impact 4, feasibility 6, data readiness 6, risk 1. Fill-in." style="--n:9;transform:translate(406px,278px)"><g class="pop"><circle class="ring" r="30.2"/><circle class="main" r="23.2"/><text class="num" text-anchor="middle" dy="0.35em">9</text></g></g>
+            <g class="bubble" data-id="10" data-team="Experimentation" data-name="Always-on autonomous optimisation" data-desc="Agents that launch, monitor and adjust tests with no human in the loop." data-i="10" data-f="2" data-d="3" data-r="8" role="button" tabindex="0" aria-label="Use case 10: Always-on autonomous optimisation. Impact 10, feasibility 2, data readiness 3, risk 8. Big bet." style="--n:10;transform:translate(182px,50px)"><g class="pop"><circle class="ring" r="23.6"/><circle class="main" r="16.6"/><text class="num" text-anchor="middle" dy="0.35em">10</text></g></g>
+            <g class="bubble" data-id="11" data-team="Marketing" data-name="Unreviewed autonomous publishing" data-desc="Publishing AI-written content with no human review step." data-i="3" data-f="2" data-d="3" data-r="9" role="button" tabindex="0" aria-label="Use case 11: Unreviewed autonomous publishing. Impact 3, feasibility 2, data readiness 3, risk 9. Park it." style="--n:11;transform:translate(182px,316px)"><g class="pop"><circle class="ring" r="23.6"/><circle class="main" r="16.6"/><text class="num" text-anchor="middle" dy="0.35em">11</text></g></g>
+          </g>
+          <g id="mx-labels" font-family="Roboto Mono, monospace" fill="#08251A" pointer-events="none">
+            <text x="84" y="52" font-size="13" font-weight="700" letter-spacing="1.4">BIG BETS</text>
+            <text x="84" y="66" font-size="10" opacity="0.8">enablers first</text>
+            <text x="616" y="52" font-size="13" font-weight="700" letter-spacing="1.4" text-anchor="end">START HERE</text>
+            <text x="616" y="66" font-size="10" opacity="0.8" text-anchor="end">high impact, high feasibility</text>
+            <text x="84" y="398" font-size="13" font-weight="700" letter-spacing="1.4">PARK IT</text>
+            <text x="84" y="412" font-size="10" opacity="0.8">revisit later</text>
+            <text x="616" y="398" font-size="13" font-weight="700" letter-spacing="1.4" text-anchor="end">FILL-INS</text>
+            <text x="616" y="412" font-size="10" opacity="0.8" text-anchor="end">easy wins, small reward</text>
+          </g>
+        </svg>
+      </div>
+      <div class="mx-right">
+        <div class="card detail rise" style="--d:.2s">
+          <div class="d-head"><span class="d-num" id="dNum">2</span><div><h3 id="dName">Multi-channel content adaptation</h3><div class="d-tags"><span class="tag" id="dTeam">Marketing and content</span><span class="tag" id="dQuad">Start here</span></div></div></div>
+          <p id="dDesc">Adapt one approved message into email, social, web and ad variants.</p>
+          <div class="msl">
+            <div class="mrow"><label for="m_i">Impact</label><input type="range" id="m_i" min="1" max="10" step="0.5" value="7"><output id="om_i">7</output></div>
+            <div class="mrow"><label for="m_f">Feasibility</label><input type="range" id="m_f" min="1" max="10" step="0.5" value="8"><output id="om_f">8</output></div>
+            <div class="mrow"><label for="m_d">Data readiness</label><input type="range" id="m_d" min="1" max="10" step="0.5" value="8"><output id="om_d">8</output></div>
+            <div class="mrow"><label for="m_r">Risk</label><input type="range" id="m_r" min="1" max="10" step="0.5" value="3"><output id="om_r">3</output></div>
+          </div>
+          <div class="d-score"><span>Priority score</span><b id="dScore">5.6</b><span>/ 10</span><span class="hint">impact × feasibility ÷ 10</span></div>
+        </div>
+        <div class="card top3 rise" style="--d:.3s">
+          <span class="mono-label">Top 3 right now</span>
+          <div id="topList">
+            <button type="button" class="rk cur" data-id="2"><span>Multi-channel content adaptation</span><span class="s">5.6</span></button>
+            <button type="button" class="rk" data-id="8" style="margin-top:5px"><span>Results summaries and next steps</span><span class="s">5.6</span></button>
+            <button type="button" class="rk" data-id="1" style="margin-top:5px"><span>Campaign brief drafting</span><span class="s">5.4</span></button>
+          </div>
+        </div>
+        <div class="callout rise" style="--d:.4s;margin-top:auto"><span class="tag">Workshop question</span><p>Which use case would you defend first in front of your leadership team, and why?</p></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Select a bubble, then move its sliders: the bubble travels across the matrix and the top three re-rank. Ties go to higher data readiness, then lower risk. Switch bubble size to Risk to show why a big bet can still be dangerous. Use the team filter to rank marketing and experimentation ideas separately.</aside>
+</section>
+
+<!-- ============ 7. ROADMAP (dark) ============ -->
+<section id="s7" data-init="s7" data-background-color="#08251A">
+  <div class="slide dark">
+    <div class="hd rise">
+      <span class="eyebrow">Steps 3 and 4 · Test and scale</span>
+      <h2 class="h2">Turn your top use case into a 90-day plan</h2>
+      <p class="lede">Essential milestones are pre-selected. Switch milestones on and off and watch the plan strength respond.</p>
+    </div>
+    <div class="road">
+      <div class="phase rise" style="--d:.1s">
+        <div class="ph-head"><span class="mono-label">Days 1-30</span><h3>Find and score</h3></div>
+        <button type="button" class="ms" aria-pressed="true" data-ess="1" data-short="four-lens workshop"><span class="bx">✓</span><span>Run the four-lens workshop</span><span class="es">Essential</span></button>
+        <button type="button" class="ms" aria-pressed="true" data-ess="1" data-short="matrix scoring"><span class="bx">✓</span><span>Score the long list on the matrix</span><span class="es">Essential</span></button>
+        <button type="button" class="ms" aria-pressed="true" data-ess="1" data-short="owner and baseline"><span class="bx">✓</span><span>Name one owner and one baseline metric</span><span class="es">Essential</span></button>
+        <button type="button" class="ms" aria-pressed="false" data-ess="0" data-short="data audit"><span class="bx">✓</span><span>Audit data access and permissions</span><span></span></button>
+        <button type="button" class="ms" aria-pressed="false" data-ess="0" data-short="guardrails"><span class="bx">✓</span><span>Agree guardrails and review rules</span><span></span></button>
+      </div>
+      <div class="phase rise" style="--d:.2s">
+        <div class="ph-head"><span class="mono-label">Days 31-60</span><h3>Test</h3></div>
+        <button type="button" class="ms" aria-pressed="true" data-ess="1" data-short="pilot"><span class="bx">✓</span><span>Pilot with three to five users</span><span class="es">Essential</span></button>
+        <button type="button" class="ms" aria-pressed="true" data-ess="1" data-short="weekly baseline check"><span class="bx">✓</span><span>Compare against the baseline weekly</span><span class="es">Essential</span></button>
+        <button type="button" class="ms" aria-pressed="true" data-ess="1" data-short="day 60 review"><span class="bx">✓</span><span>Hold a go or no-go review at day 60</span><span class="es">Essential</span></button>
+        <button type="button" class="ms" aria-pressed="false" data-ess="0" data-short="experiment"><span class="bx">✓</span><span>A/B test AI output against today's approach</span><span></span></button>
+        <button type="button" class="ms" aria-pressed="false" data-ess="0" data-short="prompt capture"><span class="bx">✓</span><span>Capture the prompts and context that work</span><span></span></button>
+      </div>
+      <div class="phase rise" style="--d:.3s">
+        <div class="ph-head"><span class="mono-label">Days 61-90</span><h3>Scale</h3></div>
+        <button type="button" class="ms" aria-pressed="true" data-ess="1" data-short="roll-out"><span class="bx">✓</span><span>Roll out to the wider team</span><span class="es">Essential</span></button>
+        <button type="button" class="ms" aria-pressed="true" data-ess="1" data-short="cost per outcome review"><span class="bx">✓</span><span>Review cost per outcome every month</span><span class="es">Essential</span></button>
+        <button type="button" class="ms" aria-pressed="false" data-ess="0" data-short="playbook"><span class="bx">✓</span><span>Publish a playbook and prompt library</span><span></span></button>
+        <button type="button" class="ms" aria-pressed="false" data-ess="0" data-short="champions"><span class="bx">✓</span><span>Train two champions per team</span><span></span></button>
+        <button type="button" class="ms" aria-pressed="false" data-ess="0" data-short="next use case"><span class="bx">✓</span><span>Pick the next use case from the matrix</span><span></span></button>
+      </div>
+    </div>
+    <div class="plan-row rise" style="--d:.4s">
+      <div class="card strength">
+        <div><span class="mono-label">Plan strength</span><div class="st-num"><b id="pScore">70</b><span>/100</span></div><span class="tag" id="pLabel">Solid</span></div>
+        <div class="st-mid"><div class="bar" role="progressbar" aria-label="Plan strength" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70" id="pProg"><span id="pBar" style="width:70%"></span></div><p id="pMsg">All essentials covered. Add optional milestones to make the plan resilient.</p><span class="note" id="pCount">8 of 15 milestones selected</span></div>
+      </div>
+      <div class="callout"><span class="tag">Workshop question</span><p>Which milestone would you cut first if time ran short, and what risk would that create?</p></div>
+    </div>
+  </div>
+  <aside class="notes">Essential milestones carry most of the weight; optional ones make the plan resilient. Ask the room which essential they are least confident in, then switch it off to show the effect on plan strength.</aside>
+</section>
+
+<!-- ============ 8. COMMIT (white) ============ -->
+<section id="s8" data-init="s8" data-background-color="#FFFFFF">
+  <div class="slide light onwhite">
+    <canvas id="confetti" width="1280" height="720" aria-hidden="true"></canvas>
+    <div class="s8-body">
+      <div class="s8-left">
+        <div class="hd rise">
+          <span class="eyebrow">Commit</span>
+          <h2 class="h2">Commit to your first use case</h2>
+          <p class="lede">Name it, tick what is true today, and leave with one owner and one review date.</p>
+        </div>
+        <div class="fld rise" style="--d:.1s"><label for="ucName">My first use case</label><input type="text" id="ucName" maxlength="60" placeholder="For example: multi-channel content adaptation" autocomplete="off"></div>
+        <div class="checks rise" style="--d:.2s" role="group" aria-label="Commitment checklist">
+          <label class="check"><input type="checkbox"><span>We ran all four lenses and built a long list</span></label>
+          <label class="check"><input type="checkbox"><span>We scored every idea on impact, feasibility, readiness and risk</span></label>
+          <label class="check"><input type="checkbox"><span>Our first use case sits in the Start here quadrant</span></label>
+          <label class="check"><input type="checkbox"><span>One owner, one baseline metric and one review date are named</span></label>
+          <label class="check"><input type="checkbox"><span>Data access and guardrails are agreed</span></label>
+          <label class="check"><input type="checkbox"><span>A 30-60-90 day plan exists, with a go or no-go at day 60</span></label>
+        </div>
+      </div>
+      <div class="s8-right">
+        <div class="card ring-card zoom" style="--d:.2s">
+          <div class="ring-wrap"><canvas id="ringCanvas" role="img" aria-label="Commitment progress ring"></canvas><div class="ring-mid"><b id="ringNum">0/6</b><span>committed</span></div></div>
+          <div><p class="stmt">I will pilot <em id="stmt">my first use case</em> and hold a go or no-go review on day 60.</p><p class="cm" id="commitMsg">Tick each statement that is true today.</p></div>
+        </div>
+        <div class="recap rise" style="--d:.3s">
+          <span class="mono-label">Recap</span>
+          <div class="pills">
+            <span class="pill"><b>4</b> discovery lenses</span>
+            <span class="pill"><b>5</b> readiness dimensions</span>
+            <span class="pill"><b>1</b> priority matrix</span>
+            <span class="pill"><b>90</b>-day plan</span>
+          </div>
+        </div>
+        <div class="callout rise" style="--d:.4s;margin-top:auto"><span class="tag">Workshop question</span><p>Which one use case will you name before you leave this session, and who will own it?</p></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Close by asking each person to type their first use case and tick the checklist honestly. Completing all six items triggers the celebration. Anything unticked becomes the follow-up action list.</aside>
+</section>
+
+</div></div>
+
+<div class="sr" id="srLive" role="status" aria-live="polite"></div>
+<nav class="scroller" aria-label="Slide navigation">
+  <button type="button" class="nav-arrow" id="navPrev" aria-label="Previous slide"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3L5 8l5 5"/></svg></button>
+  <div class="dots" role="group" aria-label="Slides">
+    <button type="button" class="dotb" aria-label="Go to slide 1: Title" aria-current="true"></button>
+    <button type="button" class="dotb" aria-label="Go to slide 2: Four discovery lenses"></button>
+    <button type="button" class="dotb" aria-label="Go to slide 3: The four-step path"></button>
+    <button type="button" class="dotb" aria-label="Go to slide 4: Readiness check"></button>
+    <button type="button" class="dotb" aria-label="Go to slide 5: Payoff calculator"></button>
+    <button type="button" class="dotb" aria-label="Go to slide 6: Priority matrix"></button>
+    <button type="button" class="dotb" aria-label="Go to slide 7: 90-day roadmap"></button>
+    <button type="button" class="dotb" aria-label="Go to slide 8: Commitment"></button>
+  </div>
+  <button type="button" class="nav-arrow" id="navNext" aria-label="Next slide"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg></button>
+  <span class="count" id="navCount" aria-live="polite">1/8</span>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+(function(){
+'use strict';
+var RM=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+var FIR='#08251A',LF='#ABFF44',SAGE='#E4F0DA',WHITE='#FFFFFF';
+function $(s,r){return(r||document).querySelector(s);}
+function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+var charts={},timers={};
+function killChart(k){if(charts[k]){try{charts[k].destroy();}catch(e){}charts[k]=null;}}
+function setNow(el,v,fmt){if(!el)return;if(el._raf)cancelAnimationFrame(el._raf);el._val=v;el.textContent=(fmt||String)(v);}
+function tween(el,to,dur,fmt){
+  if(!el)return;fmt=fmt||function(v){return String(Math.round(v));};
+  var from=typeof el._val==='number'?el._val:0;
+  if(el._raf)cancelAnimationFrame(el._raf);
+  if(RM||dur===0||from===to){el._val=to;el.textContent=fmt(to);return;}
+  var t0=null;
+  function step(ts){
+    if(t0===null)t0=ts;
+    var p=clamp((ts-t0)/dur,0,1),e=1-Math.pow(1-p,3),v=from+(to-from)*e;
+    el._val=v;el.textContent=fmt(v);
+    if(p<1){el._raf=requestAnimationFrame(step);}else{el._val=to;el.textContent=fmt(to);}
+  }
+  el._raf=requestAnimationFrame(step);
+}
+function onActivate(el,fn){
+  el.addEventListener('click',fn);
+  el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '||e.key==='Spacebar'){e.preventDefault();fn(e);}});
+}
+var quiet=false;
+function announce(msg){clearTimeout(timers.ann);if(quiet)return;timers.ann=setTimeout(function(){var e=$('#srLive');if(e)e.textContent=msg;},700);}
+if(window.Chart){Chart.defaults.font.family="Inter, system-ui, sans-serif";Chart.defaults.color=FIR;}
+
+/* ================= SLIDE 1 ================= */
+var IDEAS=[
+  {t:'Marketing and content',l:'Repetition',x:'Adapt one approved campaign message into every channel format.'},
+  {t:'Experimentation',l:'Data',x:'Mine past experiment results for your next test hypothesis.'},
+  {t:'Marketing and content',l:'Friction',x:'Cut the time from request to first draft of a campaign brief.'},
+  {t:'Experimentation',l:'Repetition',x:'Draft hypotheses and variation copy in a single pass.'},
+  {t:'Marketing and content',l:'Data',x:'Find audience segments hiding in your campaign history.'},
+  {t:'Experimentation',l:'Friction',x:'Turn raw results into a plain-language summary for stakeholders.'},
+  {t:'Marketing and content',l:'Scale',x:'Personalise content for every segment, not just the top three.'},
+  {t:'Experimentation',l:'Scale',x:'Run more tests each quarter with the same team and standards.'}
+];
+var ideaIdx=0,sparkPaused=false;
+function showIdea(i,anim){
+  var c=IDEAS[i],tx=$('#ideaText'),tm=$('#ideaTeam');
+  tm.textContent=c.t;tm.className=(c.t==='Experimentation')?'tag alt':'tag';
+  $('#ideaLens').textContent='Lens: '+c.l;tx.textContent=c.x;
+  $('#ideaCount').textContent='Idea '+(i+1)+' of '+IDEAS.length;
+  if(anim&&!RM){tx.classList.remove('swap');void tx.offsetWidth;tx.classList.add('swap');}
+}
+function wire1(){
+  $('#sparkBtn').addEventListener('click',function(){ideaIdx=(ideaIdx+1)%IDEAS.length;showIdea(ideaIdx,true);});
+  var card=$('#sparkCard');
+  card.addEventListener('mouseenter',function(){sparkPaused=true;});
+  card.addEventListener('mouseleave',function(){sparkPaused=false;});
+  card.addEventListener('focusin',function(){sparkPaused=true;});
+  card.addEventListener('focusout',function(){sparkPaused=false;});
+  $$('#s1 .stepchip').forEach(function(b){b.addEventListener('click',function(){if(window.Reveal)Reveal.slide(+b.getAttribute('data-go'));});});
+}
+function enter1(){
+  ideaIdx=0;sparkPaused=false;showIdea(0,false);
+  clearInterval(timers.spark);
+  if(!RM){timers.spark=setInterval(function(){if(sparkPaused)return;ideaIdx=(ideaIdx+1)%IDEAS.length;showIdea(ideaIdx,true);},4500);}
+}
+function leave1(){clearInterval(timers.spark);}
+
+/* ================= SLIDE 2 ================= */
+var explored={};
+function updateLens(){
+  var n=Object.keys(explored).length,left=4-n,msg;
+  $('#lensCount').textContent=n+' / 4';
+  $('#lensBar').style.width=(n*25)+'%';
+  $('#lensProg').setAttribute('aria-valuenow',n);
+  if(n===0)msg='Flip each card to see examples from marketing and experimentation.';
+  else if(n===4)msg='All four lenses explored. Take your long list to step 2 and score it.';
+  else msg=left+(left===1?' lens':' lenses')+' left to explore.';
+  $('#lensMsg').textContent=msg;
+}
+function toggleLens(el){
+  var on=!el.classList.contains('flipped');
+  el.classList.toggle('flipped',on);el.setAttribute('aria-pressed',on?'true':'false');
+  if(on)explored[el.getAttribute('data-lens')]=true;
+  updateLens();
+}
+function wire2(){$$('#s2 .flip').forEach(function(el){onActivate(el,function(){toggleLens(el);});});}
+function enter2(){
+  explored={};
+  $$('#s2 .flip').forEach(function(el){el.classList.remove('flipped');el.setAttribute('aria-pressed','false');});
+  updateLens();
+}
+
+/* ================= SLIDE 3 ================= */
+var STEP=1;
+function setStep(n){
+  STEP=n;
+  $$('#s3 .node').forEach(function(b){
+    var s=+b.getAttribute('data-step');
+    b.classList.toggle('active',s===n);b.classList.toggle('done',s<n);
+    b.setAttribute('aria-pressed',s===n?'true':'false');
+  });
+  $$('#s3 .sp').forEach(function(p){p.classList.toggle('on',+p.getAttribute('data-step')===n);});
+  $('#trackFill').style.width=(((n-1)/3)*75)+'%';
+  $('#stepNote').textContent='Step '+n+' of 4.'+(n<4?' Select a step above or move on.':' Then loop: take the next use case from your matrix.');
+  $('#stepNext').textContent=n<4?'Next step →':'Back to Find ↺';
+}
+function wire3(){
+  $$('#s3 .node').forEach(function(b){b.addEventListener('click',function(){setStep(+b.getAttribute('data-step'));});});
+  $('#stepNext').addEventListener('click',function(){setStep(STEP<4?STEP+1:1);});
+}
+function enter3(){setStep(1);}
+
+/* ================= SLIDE 4 ================= */
+var DIMS=['Data access','Process clarity','Team skills','Governance','Sponsorship'];
+var PRESETS={exploring:[3,3,3,2,4],building:[6,5,5,5,6],scaling:[8,8,7,8,8]};
+var LEVELS={
+  exploring:{name:'Exploring',msg:'Aim for the Start here quadrant: assistive, low-risk work on data you already hold.'},
+  building:{name:'Building',msg:'Take one feasible use case and write the guardrails down before you start.'},
+  scaling:{name:'Scaling',msg:'You can stretch into a big bet, with owners and review rules already in place.'}
+};
+function readVals(){return $$('#s4 input[type=range]').map(function(i){return +i.value;});}
+function levelFor(s){return s<40?'exploring':(s<70?'building':'scaling');}
+function applyVals(v){$$('#s4 input[type=range]').forEach(function(i,k){i.value=v[k];});}
+function updateReadiness(){
+  var v=readVals(),sum=v.reduce(function(a,b){return a+b;},0),score=Math.round(sum/50*100),lv=levelFor(score);
+  v.forEach(function(x,k){$('#o_'+k).textContent=x;});
+  announce('Readiness '+score+' out of 100, '+LEVELS[lv].name+'.');
+  tween($('#scoreNum'),score,350);
+  $('#levelTag').textContent=LEVELS[lv].name;$('#levelMsg').textContent=LEVELS[lv].msg;
+  $$('#s4 .level').forEach(function(b){var on=b.getAttribute('data-level')===lv;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on?'true':'false');});
+  var cv=$('#radarCanvas');
+  cv.setAttribute('aria-label','Radar chart of readiness. '+DIMS.map(function(d,k){return d+' '+v[k];}).join(', ')+'.');
+  if(charts.radar){charts.radar.data.datasets[0].data=v.slice();charts.radar.update();}
+}
+function buildRadar(vals){
+  if(!window.Chart)return;
+  killChart('radar');
+  charts.radar=new Chart($('#radarCanvas').getContext('2d'),{
+    type:'radar',
+    data:{labels:DIMS,datasets:[{label:'Readiness',data:vals,backgroundColor:'rgba(171,255,68,0.55)',borderColor:FIR,borderWidth:3,pointBackgroundColor:FIR,pointBorderColor:'#FFFFFF',pointRadius:5,pointHoverRadius:7}]},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:RM?0:700,easing:'easeOutCubic'},
+      scales:{r:{min:0,max:10,ticks:{display:false,stepSize:2},grid:{color:'rgba(8,37,26,0.25)'},angleLines:{color:'rgba(8,37,26,0.25)'},pointLabels:{color:FIR,font:{family:'Inter, system-ui, sans-serif',size:13,weight:'600'}}}},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.parsed.r+' / 10';}}}}}
+  });
+}
+function wire4(){
+  $$('#s4 input[type=range]').forEach(function(i){i.addEventListener('input',updateReadiness);});
+  $$('#s4 .level').forEach(function(b){b.addEventListener('click',function(){applyVals(PRESETS[b.getAttribute('data-level')]);updateReadiness();});});
+}
+function enter4(){
+  applyVals(PRESETS.exploring);
+  setNow($('#scoreNum'),0);
+  buildRadar([0,0,0,0,0]);
+  updateReadiness();
+}
+function leave4(){killChart('radar');}
+
+/* ================= SLIDE 5 ================= */
+var CUR='$';
+var CALC_DEF={c_team:12,c_hrs:4,c_share:40,c_rate:55,c_spend:40,c_ramp:3};
+function money(v,dec){
+  var a=Math.abs(v),s;
+  if(a>=1e6)s=(a/1e6).toFixed(2)+'m';
+  else if(a>=1e4)s=(a/1e3).toFixed(1)+'k';
+  else s=a.toLocaleString('en-GB',{minimumFractionDigits:dec||0,maximumFractionDigits:dec||0});
+  return(v<0?'-':'')+CUR+s;
+}
+function calc(){
+  var team=+$('#c_team').value,hrs=+$('#c_hrs').value,share=+$('#c_share').value/100,rate=+$('#c_rate').value,spend=+$('#c_spend').value,ramp=+$('#c_ramp').value;
+  var hours=team*hrs*share*4.33,value=hours*rate,cost=team*spend;
+  var cum=[],acc=0,m,adopt;
+  for(m=1;m<=12;m++){adopt=Math.min(1,m/ramp);acc+=value*adopt-cost;cum.push(Math.round(acc));}
+  return{hours:hours,value:value,cost:cost,roi:cost>0?value/cost:0,per:hours>0?cost/hours:0,net:acc,cum:cum,kept:value>0?clamp((value-cost)/value*100,0,100):0};
+}
+function updateCalc(){
+  var r=calc();
+  $('#oc_team').textContent=$('#c_team').value;
+  $('#oc_hrs').textContent=$('#c_hrs').value+' h';
+  $('#oc_share').textContent=$('#c_share').value+'%';
+  $('#oc_rate').textContent=CUR+$('#c_rate').value;
+  $('#oc_spend').textContent=CUR+$('#c_spend').value;
+  $('#oc_ramp').textContent=$('#c_ramp').value+' mo';
+  announce('Return on token '+r.roi.toFixed(1)+' times. Value per month '+money(r.value)+'. AI spend per month '+money(r.cost)+'.');
+  tween($('#kHours'),r.hours,500,function(v){return Math.round(v)+' h';});
+  tween($('#kValue'),r.value,500,function(v){return money(v);});
+  tween($('#kSpend'),r.cost,500,function(v){return money(v);});
+  tween($('#kRoi'),r.roi,500,function(v){return v.toFixed(1)+'x';});
+  tween($('#kPer'),r.per,500,function(v){return money(v,2);});
+  tween($('#kNet'),r.net,500,function(v){return money(v);});
+  tween($('#donutVal'),r.kept,500,function(v){return Math.round(v)+'%';});
+  if(charts.donut){charts.donut.data.datasets[0].data=[r.kept,100-r.kept];charts.donut.update();}
+  if(charts.line){charts.line.data.datasets[0].data=r.cum;charts.line.update();}
+}
+function buildCalcCharts(){
+  if(!window.Chart)return;
+  killChart('donut');killChart('line');
+  charts.donut=new Chart($('#donutCanvas').getContext('2d'),{type:'doughnut',
+    data:{labels:['Value kept','AI spend'],datasets:[{data:[0,100],backgroundColor:[LF,WHITE],borderColor:FIR,borderWidth:2}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'68%',animation:{duration:RM?0:900},plugins:{legend:{display:false},tooltip:{enabled:false}}}});
+  var labels=['M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12'];
+  charts.line=new Chart($('#lineCanvas').getContext('2d'),{type:'line',
+    data:{labels:labels,datasets:[{label:'Cumulative net value',data:labels.map(function(){return 0;}),fill:true,backgroundColor:'rgba(171,255,68,0.5)',borderColor:FIR,borderWidth:3,pointBackgroundColor:FIR,pointRadius:3,tension:0.25}]},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:RM?0:900},
+      scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(8,37,26,0.15)'},ticks:{font:{size:11},callback:function(v){return money(v);}}}},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return money(c.parsed.y);}}}}}});
+}
+function wire5(){
+  $$('#s5 input[type=range]').forEach(function(i){i.addEventListener('input',updateCalc);});
+  $$('#s5 .seg button').forEach(function(b){b.addEventListener('click',function(){
+    CUR=b.getAttribute('data-cur');
+    $$('#s5 .seg button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+    updateCalc();
+  });});
+}
+function enter5(){
+  CUR='$';
+  $$('#s5 .seg button').forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-cur')==='$'?'true':'false');});
+  Object.keys(CALC_DEF).forEach(function(k){$('#'+k).value=CALC_DEF[k];});
+  ['kHours','kValue','kSpend','kRoi','kPer','kNet','donutVal'].forEach(function(id){setNow($('#'+id),0,function(){return id==='kRoi'?'0.0x':(id==='donutVal'?'0%':(id==='kHours'?'0 h':CUR+'0'));});});
+  buildCalcCharts();
+  updateCalc();
+}
+function leave5(){killChart('donut');killChart('line');}
+
+/* ================= SLIDE 6 ================= */
+var UC=[],SEL=null,SIZEBY='d',FILTER='All';
+var TEAMNAME={Marketing:'Marketing and content',Experimentation:'Experimentation'};
+function px(f){return 70+56*f;}
+function py(i){return 430-38*i;}
+function rad(u){return 10+2.2*(SIZEBY==='r'?u.r:u.d);}
+function quad(u){if(u.i>5&&u.f>5)return'Start here';if(u.i>5)return'Big bet';if(u.f>5)return'Fill-in';return'Park it';}
+function qcls(q){return q==='Start here'?'tag':(q==='Big bet'?'tag alt':(q==='Fill-in'?'tag sg':'tag pk'));}
+function score(u){return u.i*u.f/10;}
+function fmtN(v){return(v%1)?v.toFixed(1):String(v);}
+function rank(){
+  return UC.filter(function(u){return FILTER==='All'||u.team===FILTER;}).sort(function(a,b){
+    return score(b)-score(a)||b.d-a.d||a.r-b.r||a.id-b.id;});
+}
+function renderBubble(u){
+  var m=u.el.querySelector('.main'),rg=u.el.querySelector('.ring'),r=rad(u);
+  u.el.style.transform='translate('+px(u.f)+'px,'+py(u.i)+'px)';
+  m.setAttribute('r',r);rg.setAttribute('r',r+7);
+  u.el.setAttribute('aria-label','Use case '+u.id+': '+u.name+'. Impact '+fmtN(u.i)+', feasibility '+fmtN(u.f)+', data readiness '+fmtN(u.d)+', risk '+fmtN(u.r)+'. '+quad(u)+'.');
+  u.el.classList.toggle('dim',!(FILTER==='All'||u.team===FILTER));
+}
+function renderTop(){
+  var box=$('#topList'),list=rank().slice(0,3);
+  box.innerHTML='';
+  list.forEach(function(u,k){
+    var b=document.createElement('button');
+    b.type='button';b.className='rk'+(SEL&&SEL.id===u.id?' cur':'');b.setAttribute('data-id',u.id);
+    if(k>0)b.style.marginTop='5px';
+    b.innerHTML='<span></span><span class="s">'+score(u).toFixed(1)+'</span>';
+    b.children[0].textContent=u.name;
+    b.setAttribute('aria-label','Rank '+(k+1)+': '+u.name+', priority score '+score(u).toFixed(1));
+    b.addEventListener('click',function(){select(u.id,true);});
+    box.appendChild(b);
+  });
+}
+function renderDetail(syncSliders){
+  var u=SEL;if(!u)return;
+  $('#dNum').textContent=u.id;$('#dName').textContent=u.name;$('#dDesc').textContent=u.desc;
+  $('#dTeam').textContent=TEAMNAME[u.team];$('#dTeam').className=u.team==='Experimentation'?'tag alt':'tag';
+  var q=quad(u),qe=$('#dQuad');qe.textContent=q;qe.className=qcls(q);
+  if(syncSliders){$('#m_i').value=u.i;$('#m_f').value=u.f;$('#m_d').value=u.d;$('#m_r').value=u.r;}
+  $('#om_i').textContent=fmtN(u.i);$('#om_f').textContent=fmtN(u.f);$('#om_d').textContent=fmtN(u.d);$('#om_r').textContent=fmtN(u.r);
+  $('#dScore').textContent=score(u).toFixed(1);
+}
+function select(id,sync){
+  UC.forEach(function(u){var on=u.id===id;u.el.classList.toggle('sel',on);if(on)SEL=u;});
+  renderDetail(sync!==false);renderTop();
+  announce('Selected use case '+SEL.id+', '+SEL.name+'. Priority score '+score(SEL).toFixed(1)+'. '+quad(SEL)+'.');
+}
+function applyFilterAndSize(){UC.forEach(renderBubble);renderTop();}
+function wire6(){
+  $$('#s6 .bubble').forEach(function(g){
+    var u={id:+g.getAttribute('data-id'),el:g,name:g.getAttribute('data-name'),team:g.getAttribute('data-team'),desc:g.getAttribute('data-desc'),
+      i:+g.getAttribute('data-i'),f:+g.getAttribute('data-f'),d:+g.getAttribute('data-d'),r:+g.getAttribute('data-r')};
+    u.def={i:u.i,f:u.f,d:u.d,r:u.r};
+    UC.push(u);
+    onActivate(g,function(){select(u.id,true);});
+  });
+  [['m_i','i'],['m_f','f'],['m_d','d'],['m_r','r']].forEach(function(p){
+    $('#'+p[0]).addEventListener('input',function(e){
+      if(!SEL)return;SEL[p[1]]=+e.target.value;renderBubble(SEL);renderDetail(false);renderTop();announce('Use case '+SEL.id+' priority score '+score(SEL).toFixed(1)+'. '+quad(SEL)+'.');
+    });
+  });
+  $$('#s6 [data-team]').forEach(function(b){if(b.tagName!=='BUTTON')return;b.addEventListener('click',function(){
+    FILTER=b.getAttribute('data-team');
+    $$('#s6 button[data-team]').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+    applyFilterAndSize();
+  });});
+  $$('#s6 button[data-size]').forEach(function(b){b.addEventListener('click',function(){
+    SIZEBY=b.getAttribute('data-size');
+    $$('#s6 button[data-size]').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+    applyFilterAndSize();
+  });});
+}
+function enter6(){
+  FILTER='All';SIZEBY='d';
+  $$('#s6 button[data-team]').forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-team')==='All'?'true':'false');});
+  $$('#s6 button[data-size]').forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-size')==='d'?'true':'false');});
+  UC.forEach(function(u){u.i=u.def.i;u.f=u.def.f;u.d=u.def.d;u.r=u.def.r;});
+  applyFilterAndSize();select(2,true);
+}
+
+/* ================= SLIDE 7 ================= */
+function strengthLabel(s){return s<40?'Fragile':(s<70?'Getting there':(s<90?'Solid':'Resilient'));}
+function updatePlan(){
+  var ms=$$('#s7 .ms'),es=0,et=0,os=0,ot=0,miss=[];
+  ms.forEach(function(b){
+    var on=b.getAttribute('aria-pressed')==='true',ess=b.getAttribute('data-ess')==='1';
+    if(ess){et++;if(on)es++;else miss.push(b.getAttribute('data-short'));}else{ot++;if(on)os++;}
+  });
+  var s=Math.round(es/et*70+os/ot*30),sel=es+os,msg;
+  tween($('#pScore'),s,400);
+  $('#pBar').style.width=s+'%';$('#pProg').setAttribute('aria-valuenow',s);
+  $('#pLabel').textContent=strengthLabel(s);
+  $('#pCount').textContent=sel+' of '+ms.length+' milestones selected';
+  if(miss.length===0)msg=os>=ot?'Every milestone is in. This plan is as resilient as it gets.':'All essentials covered. Add optional milestones to make the plan resilient.';
+  else msg='Missing essentials: '+miss.slice(0,2).join(', ')+(miss.length>2?' and '+(miss.length-2)+' more':'')+'.';
+  $('#pMsg').textContent=msg;
+  announce('Plan strength '+s+' out of 100, '+strengthLabel(s)+'. '+msg);
+}
+function wire7(){$$('#s7 .ms').forEach(function(b){b.addEventListener('click',function(){
+  b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true');updatePlan();});});}
+function enter7(){
+  $$('#s7 .ms').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-ess')==='1'?'true':'false');});
+  setNow($('#pScore'),0);$('#pBar').style.width='0%';
+  updatePlan();
+}
+
+/* ================= SLIDE 8 ================= */
+var fired=false,confRaf=null;
+function stopConfetti(){
+  if(confRaf){cancelAnimationFrame(confRaf);confRaf=null;}
+  var cv=$('#confetti');if(cv){cv.getContext('2d').clearRect(0,0,1280,720);}
+}
+function confetti(){
+  var cv=$('#confetti');if(!cv||RM)return;
+  stopConfetti();
+  var ctx=cv.getContext('2d'),cols=[LF,FIR,'#91DBDA','#FF9BBA','#FFFFFF'],ps=[],i;
+  for(i=0;i<170;i++){ps.push({x:640+(Math.random()-0.5)*240,y:600,vx:(Math.random()-0.5)*18,vy:-(9+Math.random()*13),g:0.3+Math.random()*0.1,s:7+Math.random()*8,r:Math.random()*6,vr:(Math.random()-0.5)*0.4,c:cols[i%cols.length]});}
+  function frame(){
+    ctx.clearRect(0,0,1280,720);var alive=0;
+    ps.forEach(function(p){
+      p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;p.vx*=0.99;p.r+=p.vr;
+      if(p.y<780)alive++;
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);
+      ctx.fillStyle=p.c;ctx.fillRect(-p.s/2,-p.s/3,p.s,p.s*0.6);
+      ctx.strokeStyle=FIR;ctx.lineWidth=1.5;ctx.strokeRect(-p.s/2,-p.s/3,p.s,p.s*0.6);
+      ctx.restore();
+    });
+    if(alive>0){confRaf=requestAnimationFrame(frame);}else{stopConfetti();}
+  }
+  confRaf=requestAnimationFrame(frame);
+}
+function buildRing(){
+  if(!window.Chart)return;
+  killChart('ring');
+  charts.ring=new Chart($('#ringCanvas').getContext('2d'),{type:'doughnut',
+    data:{labels:['Committed','Open'],datasets:[{data:[0,6],backgroundColor:[LF,WHITE],borderColor:FIR,borderWidth:2}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'70%',animation:{duration:RM?0:600},plugins:{legend:{display:false},tooltip:{enabled:false}}}});
+}
+function updateCommit(){
+  var boxes=$$('#s8 .check input'),n=0;
+  boxes.forEach(function(b){var on=b.checked;if(on)n++;b.parentNode.classList.toggle('on',on);});
+  tween($('#ringNum'),n,300,function(v){return Math.round(v)+'/6';});
+  if(charts.ring){charts.ring.data.datasets[0].data=[n,6-n];charts.ring.update();}
+  var name=$('#ucName').value.trim();
+  $('#stmt').textContent=name||'my first use case';
+  var msg=$('#commitMsg');
+  if(n===6){
+    msg.textContent='Committed. Go and build your pilot.';
+    if(!fired){fired=true;confetti();}
+  }else{
+    fired=false;
+    msg.textContent=n===0?'Tick each statement that is true today.':(6-n)+(6-n===1?' commitment':' commitments')+' to go.';
+  }
+  announce(n+' of 6 commitments. '+msg.textContent);
+}
+function wire8(){
+  $$('#s8 .check input').forEach(function(b){b.addEventListener('change',updateCommit);});
+  $('#ucName').addEventListener('input',updateCommit);
+}
+function enter8(){
+  fired=false;stopConfetti();
+  $$('#s8 .check input').forEach(function(b){b.checked=false;});
+  $('#ucName').value='';
+  setNow($('#ringNum'),0,function(v){return Math.round(v)+'/6';});
+  buildRing();updateCommit();
+}
+function leave8(){stopConfetti();killChart('ring');}
+
+/* ================= NAV + REVEAL ================= */
+var INIT={s1:enter1,s2:enter2,s3:enter3,s4:enter4,s5:enter5,s6:enter6,s7:enter7,s8:enter8};
+var LEAVE={s1:leave1,s4:leave4,s5:leave5,s8:leave8};
+var dots=$$('.dotb');
+function updateNav(idx){
+  dots.forEach(function(d,i){if(i===idx)d.setAttribute('aria-current','true');else d.removeAttribute('aria-current');});
+  $('#navCount').textContent=(idx+1)+'/'+dots.length;
+}
+function enterSlide(sec){
+  if(!sec)return;var k=sec.getAttribute('data-init');
+  if(k&&INIT[k])requestAnimationFrame(function(){quiet=true;INIT[k]();quiet=false;});
+}
+function leaveSlide(sec){
+  if(!sec)return;var k=sec.getAttribute('data-init');
+  if(k&&LEAVE[k])LEAVE[k]();
+}
+wire1();wire2();wire3();wire4();wire5();wire6();wire7();wire8();
+if(window.Reveal){
+  dots.forEach(function(d,i){d.addEventListener('click',function(){Reveal.slide(i);});});
+  $('#navPrev').addEventListener('click',function(){Reveal.prev();});
+  $('#navNext').addEventListener('click',function(){Reveal.next();});
+  var plugins=[];
+  if(window.RevealNotes)plugins.push(window.RevealNotes);
+  if(window.RevealZoom)plugins.push(window.RevealZoom);
+  Reveal.on('slidechanged',function(e){leaveSlide(e.previousSlide);enterSlide(e.currentSlide);updateNav(e.indexh);});
+  Reveal.initialize({
+    width:1280,height:720,margin:0.06,minScale:0.2,maxScale:2,
+    controls:false,progress:true,slideNumber:false,hash:false,history:false,center:false,
+    transition:'fade',transitionSpeed:'default',touch:false,mouseWheel:false,overview:false,keyboard:true,
+    keyboardCondition:function(e){
+      var t=document.activeElement,k=e.key;
+      if((k===' '||k==='Enter')&&t&&t.closest&&t.closest('button,[role="button"],input,select,textarea,a,label'))return false;
+      return true;
+    },
+    plugins:plugins
+  }).then(function(){
+    var idx=Reveal.getIndices().h||0;
+    enterSlide(Reveal.getCurrentSlide());updateNav(idx);
+  });
+}
+})();
+</script>
+</body>
+</html>
